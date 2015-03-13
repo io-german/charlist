@@ -1,0 +1,12 @@
+{
+  "name": "dnd_charlist",
+  "description": "Charlist for DnD 4",
+  "version": "0.0.1",
+
+  "devDependencies": {
+    "gulp": "~3.8.11",
+    "gulp-less": "~3.0.1",
+    "less": "~2.4.0",
+    "react": "~0.13.0"
+  }
+}
