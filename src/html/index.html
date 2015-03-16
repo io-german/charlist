@@ -9,10 +9,45 @@
 <body>
 
 <div class="app">
-
+  <h2>Dungeons & Dragons</h2>
+  <div class="general-info flex-box">
+    <div class="flex-item">
+      <div class="input input-underlined">
+        <input type="text" name="characterName" id="characterName"/>
+        <label for="characterName">Character Name</label>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="input input-bordered level-input">
+        <input type="number" name="level" id="level" maxlength="2" />
+        <label for="level">Level</label>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="input input-underlined">
+        <select type="text" name="characterClass" id="characterClass">
+          <option value=""></option>
+          <option value="fighter">Fighter</option>
+          <option value="cleric">Cleric</option>
+        </select>
+        <label for="characterClass">Class</label>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="input input-underlined">
+        <select type="text" name="race" id="race">
+          <option value=""></option>
+          <option value="human">Human</option>
+          <option value="tiefling">Tiefling</option>
+          <option value="elf">Elf</option>
+        </select>
+        <label for="race">Race</label>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script src="../js/lib/react.js"></script>
-<script src="../js/app.js"></script>
+<!--<script src="../js/lib/react.js"></script>-->
+<!--<script src="../js/app.js"></script>-->
 </body>
 </html>
