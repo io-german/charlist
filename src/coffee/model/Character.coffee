@@ -10,6 +10,9 @@ class window.DndCharacter
   constructor: (@charName, @characterClass, @race) ->
 
   level: 1
+
+  levelBonus: () -> Math.floor(@level / 2)
+
   abilityScores: {
     strength: new AbilityScore,
     constitution: new AbilityScore,
@@ -39,6 +42,26 @@ class window.DndCharacter
     thievery: new Skill('thievery', 'dexterity')
   }
 
+  defences: () -> {
+    self: this
+    ac: () ->
+      armorBonus = 0
+      abilityBonus  = @highestModifier(['dexterity', 'intelligence'])
+      classBonus = 0
+      featBonus = 0
+      enhancementBonus = 0
+      10 + @self.levelBonus() + armorBonus + abilityBonus + classBonus + featBonus + enhancementBonus
+
+    fortitude: () -> 10
+    reflex: () -> 10
+    willpower: () -> 10
+
+    highestModifier: (abilities) ->
+      modifiers = (@self.abilityScores[ability].modifier() for ability in abilities)
+      Math.max.apply(Math, modifiers)
+  }
+
+
   abilityValue: (abilityName) ->
     ability = @abilityScores[abilityName]
     racialBonus = @race.abilityScoreBonus[abilityName] || 0
@@ -49,6 +72,5 @@ class window.DndCharacter
     ability = @abilityValue(skill.ability)
     trainedPoints = if skill.trained then 5 else 0
     abilityPoints = ability.modifier()
-    levelPoints = Math.floor(@level / 2)
     racialBonus = @race.skillBonus[skillName] || 0
-    trainedPoints + abilityPoints + levelPoints + racialBonus
+    trainedPoints + abilityPoints + @levelBonus() + racialBonus
