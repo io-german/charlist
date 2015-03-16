@@ -47,35 +47,33 @@ class window.DndCharacter
     ac: () ->
       armorBonus = 0
       abilityBonus  = @highestModifier(['dexterity', 'intelligence'])
-      classBonus = 0
       featBonus = 0
       enhancementBonus = 0
-      10 + @self.levelBonus() + armorBonus + abilityBonus + classBonus + featBonus + enhancementBonus
+      10 + @self.levelBonus() + armorBonus + abilityBonus + @classBonus('ac') + featBonus + enhancementBonus
 
     fortitude: () ->
       abilityBonus = @highestModifier(['strength', 'constitution'])
-      classBonus = 0
       featBonus = 0
       enhancementBonus = 0
-      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
+      10 + @self.levelBonus() + abilityBonus + @classBonus('fortitude') + featBonus + enhancementBonus
 
     reflex: () ->
       abilityBonus = @highestModifier(['dexterity', 'intelligence'])
-      classBonus = 0
       featBonus = 0
       enhancementBonus = 0
-      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
+      10 + @self.levelBonus() + abilityBonus + @classBonus('reflex') + featBonus + enhancementBonus
 
-    willpower: () ->
+    will: () ->
       abilityBonus = @highestModifier(['wisdom', 'charisma'])
-      classBonus = 0
       featBonus = 0
       enhancementBonus = 0
-      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
+      10 + @self.levelBonus() + abilityBonus + @classBonus('will') + featBonus + enhancementBonus
 
     highestModifier: (abilities) ->
       modifiers = (@self.abilityScores[ability].modifier() for ability in abilities)
       Math.max.apply(Math, modifiers)
+
+    classBonus: (defence) -> @self.characterClass.defences[defence] || 0
   }
 
 
