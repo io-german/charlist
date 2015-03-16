@@ -52,9 +52,26 @@ class window.DndCharacter
       enhancementBonus = 0
       10 + @self.levelBonus() + armorBonus + abilityBonus + classBonus + featBonus + enhancementBonus
 
-    fortitude: () -> 10
-    reflex: () -> 10
-    willpower: () -> 10
+    fortitude: () ->
+      abilityBonus = @highestModifier(['strength', 'constitution'])
+      classBonus = 0
+      featBonus = 0
+      enhancementBonus = 0
+      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
+
+    reflex: () ->
+      abilityBonus = @highestModifier(['dexterity', 'intelligence'])
+      classBonus = 0
+      featBonus = 0
+      enhancementBonus = 0
+      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
+
+    willpower: () ->
+      abilityBonus = @highestModifier(['wisdom', 'charisma'])
+      classBonus = 0
+      featBonus = 0
+      enhancementBonus = 0
+      10 + @self.levelBonus() + abilityBonus + classBonus + featBonus + enhancementBonus
 
     highestModifier: (abilities) ->
       modifiers = (@self.abilityScores[ability].modifier() for ability in abilities)
