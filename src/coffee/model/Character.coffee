@@ -47,7 +47,7 @@ class window.DndCharacter
   skillValue: (skillName) ->
     skill = @skills[skillName]
     ability = @abilityValue(skill.ability)
-    trainedPoints = if skill.trained then 4 else 0
+    trainedPoints = if skill.trained then 5 else 0
     abilityPoints = ability.modifier()
     levelPoints = Math.floor(@level / 2)
     racialBonus = @race.skillBonus[skillName] || 0
